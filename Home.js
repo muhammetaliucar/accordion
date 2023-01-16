@@ -12,6 +12,11 @@ const data = [
         id: 1,
         title: "Lorem ipsum",
         body: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
+    },
+    {
+        id: 2,
+        title: "Lorem ipsum",
+        body: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
     }
 ]
 

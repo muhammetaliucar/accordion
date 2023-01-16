@@ -1,4 +1,4 @@
-import { Animated, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Animated, LayoutAnimation, StyleSheet, Text, Pressable, View } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons'; 
 const AccordionItem = ({ title, bodyText }) => {
@@ -8,7 +8,7 @@ const AccordionItem = ({ title, bodyText }) => {
     const toggleAnimation = {
         duration:300,
         update:{
-            duration:300,
+            duration:500,
             property:LayoutAnimation.Properties.opacity,
             type:LayoutAnimation.Types.easeInEaseOut
         },
@@ -39,18 +39,18 @@ const AccordionItem = ({ title, bodyText }) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => toggleListItem()}>
+            <Pressable onPress={toggleListItem}>
                 <View style={styles.titleContainer}>
                     <Text>{title}</Text>
                     <Animated.View style={{transform:[{rotateZ:arrowTransform}]}}>
                     <AntDesign name="right" size={16} color="gray" />
                     </Animated.View>
                 </View>
-            </TouchableOpacity>
-            {showContent && <TouchableOpacity onPress={()=> toggleListItem()}>
+            </Pressable>
+            {showContent && <Pressable  onPress={toggleListItem}>
                 <View style={styles.body}>
                 <Text>{bodyText}</Text>
-            </View></TouchableOpacity>}
+            </View></Pressable>}
         </View>
     )
 }
@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         padding: 10,
-        borderRadius: 12,
         backgroundColor: "white",
         marginBottom: 10,
-        overflow: "hidden"
+        overflow: "hidden",
+        borderRadius:12
     },
     title: {
         fontSize: 16,
