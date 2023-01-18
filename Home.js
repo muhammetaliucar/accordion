@@ -1,6 +1,7 @@
-import { FlatList, StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView, Platform, TextInput, Button, Keyboard } from 'react-native'
+import React, { useState } from 'react'
 import AccordionItem from './AccordionItem'
+import axios from 'axios'
 
 const data = [
     {
@@ -20,18 +21,27 @@ const data = [
     }
 ]
 
+
 const Home = () => {
+
+    const fetchData = async() =>{
+        await axios.get("")
+    }
+
+
+
+    const [data,setData]= useState()
+
+
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <SafeAreaView>
+            <SafeAreaView style={{flex:1,marginTop:30, backgroundColor: "#e7e7e7",}}>
                 <View style={styles.container}>
                     <FlatList data={data} keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => <AccordionItem title={item.title} bodyText={item.body} />}
                     />
-
                 </View>
+               
             </SafeAreaView>
-        </KeyboardAvoidingView>
     )
 }
 
@@ -41,7 +51,8 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 10,
         paddingHorizontal: 10,
-        height: "100%",
-        backgroundColor: "#e7e7e7"
+        height:"100%",
+       
+
     }
 })

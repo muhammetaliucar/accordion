@@ -1,12 +1,16 @@
 import Home from './Home';
 import Deneme from './Deneme';
-import WebView1 from './WebView';
+import { StatusBar } from 'expo-status-bar';
 
 const App = () => {
 
  
   return (
-  <WebView1 />
+    <>
+
+    <Home />
+    </>
+
   );
 };
 

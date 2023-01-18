@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
-import React, { useCallback, useImperativeHandle ,forwardRef} from 'react';
+import React, { useCallback, useImperativeHandle } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
@@ -11,9 +11,10 @@ import Animated, {
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT;
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
 
-const BottomSheet = forwardRef(
+
+const BottomSheet = React.forwardRef(
   ({ children }, ref) => {
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
@@ -44,9 +45,9 @@ const BottomSheet = forwardRef(
         translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
       })
       .onEnd(() => {
-        if (translateY.value > -SCREEN_HEIGHT / 1) {
+        if (translateY.value > -SCREEN_HEIGHT / 3) {
           scrollTo(0);
-        } else if (translateY.value < -SCREEN_HEIGHT / 1) {
+        } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
           scrollTo(MAX_TRANSLATE_Y);
         }
       });
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: 'grey',
     alignSelf: 'center',
+    marginVertical: 15,
     borderRadius: 2,
   },
 });
